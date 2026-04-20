@@ -1,0 +1,54 @@
+---
+import "./PostCard.css";
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  author: string;
+  tags: string[];
+  slug: string;
+  featured?: boolean;
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  author,
+  tags,
+  slug,
+  featured = false,
+} = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(publishDate);
+---
+
+<article class:list={["post-card", { featured }]}> 
+  <div class="post-card-inner">
+    {featured && <span class="featured-badge">Featured</span>}
+
+    <div class="post-meta">
+      <time datetime={publishDate.toISOString()}>{formattedDate}</time>
+      <span class="meta-divider">·</span>
+      <span class="author">{author}</span>
+    </div>
+
+    <h2 class="post-title">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h2>
+
+    <p class="post-description">{description}</p>
+
+    <div class="post-footer">
+      <ul class="tag-list">
+        {tags.map((tag) => <li class="tag">{tag}</li>)}
+      </ul>
+      <a href={`/blog/${slug}`} class="read-more"> Read more → </a>
+    </div>
+  </div>
+</article>

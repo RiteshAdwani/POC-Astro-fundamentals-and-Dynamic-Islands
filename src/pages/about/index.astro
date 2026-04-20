@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TechStack from "../../components/TechStack";
+import AuthorCard from "../../components/AuthorCard/AuthorCard.vue";
+import "./about.css";
+---
+
+<BaseLayout
+  title="About"
+  description="Learn more about Ritesh — frontend developer and writer."
+>
+  <section class="about-hero">
+    <h1 class="page-title">About Me</h1>
+    <p class="page-subtitle">
+      Frontend developer, open source contributor, and occasional writer. I care
+      deeply about performance, accessibility and developer experience.
+    </p>
+  </section>
+
+  <!-- ======================= -->
+  <!--   VUE COMPONENT         -->
+  <!-- ======================= -->
+  <section class="section">
+    <div class="component-label">
+      <span class="framework-badge vue">Vue Component</span>
+      <code class="filename">AuthorCard.vue</code>
+    </div>
+
+    <AuthorCard
+      name="Ritesh Adwani"
+      jobTitle="Frontend Developer"
+      bio="I build fast, accessible web experiences with a focus on performance and developer experience. Currently exploring Astro and the Islands Architecture."
+      stats={[
+        { value: "3+", label: "Years exp" },
+        { value: "12", label: "Projects" },
+        { value: "8", label: "Blog posts" },
+      ]}
+    />
+  </section>
+
+  <!-- ======================= -->
+  <!--   REACT COMPONENT       -->
+  <!-- ======================= -->
+  <section class="section">
+    <div class="component-label">
+      <span class="framework-badge react">React Component</span>
+      <code class="filename">TechStack.tsx</code>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-subtitle">Technologies I work with regularly.</p>
+    </div>
+
+    <TechStack />
+  </section>
+
+  <!-- ======================= -->
+  <!--   ASTRO NOTE             -->
+  <!-- ======================= -->
+  <section class="section">
+    <div class="astro-note">
+      <div class="note-header">
+        <span class="note-icon">🏝️</span>
+        <h3>Framework Agnostic — How does this work?</h3>
+      </div>
+      <p>
+        The two components above are a <strong>Vue component</strong> and a <strong
+          >React component</strong
+        > — living on the same Astro page. No conflicts, no shared runtime, no framework
+        negotiation.
+      </p>
+      <p>
+        Both render to static HTML at build time. The browser receives plain
+        markup — zero Vue JS, zero React JS was shipped for these components.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard/ProjectCard.astro";
+import "./projects.css";
+import { GITHUB_TOKEN } from "astro:env/server";
+import { fetchProjects } from "../../lib/github";
+
+const projects = await fetchProjects(GITHUB_TOKEN);
+const featuredProjects = projects.filter((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<BaseLayout
+  title="Projects"
+  description="A collection of open source projects and side experiments."
+>
+  <section class="projects-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">
+      {projects.length} projects — open source tools, experiments and side projects.
+    </p>
+  </section>
+
+  <!-- Featured -->
+  <section class="projects-section">
+    <h2 class="section-label">Featured</h2>
+    <div class="projects-grid">
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <!-- Other -->
+  {
+    otherProjects.length > 0 && (
+      <section class="projects-section">
+        <h2 class="section-label">Other Projects</h2>
+        <div class="projects-grid">
+          {otherProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Build-time fetch callout -->
+  <aside class="callout">
+    <div class="callout-icon">⚡</div>
+    <div>
+      <strong>Fetched at build time</strong>
+      <p>
+        These projects are pulled live from the <strong>GitHub API</strong> via
+        <code>fetch()</code> in the Astro frontmatter — running once at build time,
+        zero API calls in the browser.
+      </p>
+    </div>
+  </aside>
+</BaseLayout>

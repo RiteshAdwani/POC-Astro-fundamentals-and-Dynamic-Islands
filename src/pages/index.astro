@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard/PostCard.astro";
+import ProjectCard from "../components/ProjectCard/ProjectCard.astro";
+import { getCollection } from "astro:content";
+import { GITHUB_TOKEN } from "astro:env/server";
+import { fetchProjects } from "../lib/github";
+import "./home.css";
+
+// get only featured blog posts for homepage
+const allPosts = await getCollection("blog");
+const featuredPosts = allPosts
+  .filter((post) => post.data.featured)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// get featured projects from GitHub API
+const allProjects = await fetchProjects(GITHUB_TOKEN);
+const featuredProjects = allProjects.filter((p) => p.featured);
+---
+
+<BaseLayout
+  title="Home"
+  description="A developer blog and portfolio — writing about Astro, performance and the web."
+>
+  <!-- ======================== -->
+  <!--          HERO            -->
+  <!-- ======================== -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Hey, I'm Ritesh 👋</span>
+      <h1 class="hero-title">
+        I build fast,
+        <span class="gradient-text">purposeful</span>
+        things for the web.
+      </h1>
+      <p class="hero-description">
+        Frontend developer focused on performance, developer experience and
+        writing about what I learn along the way.
+      </p>
+      <div class="hero-actions">
+        <a href="/blog" class="btn btn-primary">Read the Blog</a>
+        <a href="/projects" class="btn btn-secondary">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!--      FEATURED POSTS      -->
+  <!-- ======================== -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Featured Posts</h2>
+      <a href="/blog" class="section-link">View all →</a>
+    </div>
+
+    <div class="posts-grid">
+      {
+        featuredPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            publishDate={post.data.publishDate}
+            author={post.data.author}
+            tags={post.data.tags}
+            slug={post.id}
+            featured={post.data.featured}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!--    FEATURED PROJECTS     -->
+  <!-- ======================== -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <a href="/projects" class="section-link">View all →</a>
+    </div>
+
+    <div class="projects-grid">
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</BaseLayout>
