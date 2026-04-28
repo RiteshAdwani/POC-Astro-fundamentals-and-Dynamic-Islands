@@ -1,5 +1,6 @@
 ---
 import "./Navbar.css";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -19,26 +20,28 @@ function isActive(href: string): boolean {
 ---
 
 <header>
-	<nav>
-		<a href="/" class="logo">
-			<span class="logo-bracket">&lt;</span>
-			DevFolio
-			<span class="logo-bracket">/&gt;</span>
-		</a>
+  <nav>
+    <a href="/" class="logo">
+      <span class="logo-bracket">&lt;</span>
+      DevFolio
+      <span class="logo-bracket">/&gt;</span>
+    </a>
 
-		<ul class="nav-links">
-			{
-				navLinks.map((link) => (
-					<li>
-						<a
-							href={link.href}
-							class:list={["nav-link", { active: isActive(link.href) }]}
-						>
-							{link.label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+    <ul class="nav-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={["nav-link", { active: isActive(link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ThemeToggle client:load/>
+  </nav>
 </header>
