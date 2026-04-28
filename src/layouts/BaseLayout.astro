@@ -1,6 +1,7 @@
 ---
 import Navbar from "../components/Navbar/Navbar.astro";
 import Footer from "../components/Footer/Footer.tsx";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop.tsx";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -54,6 +55,7 @@ const canonicalURL = Astro.site
     </main>
 
     <Footer client:visible />
+    <ScrollToTop client:only="react" />
   </body><!-- Re-apply theme after each client-side navigation (View Transitions resets the html attributes) -->
   <script>
     import { LOCAL_STORAGE_KEYS } from "../constants/localStorageKeys.constants";
