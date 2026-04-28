@@ -1,6 +1,7 @@
 ---
 import "./Navbar.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import MobileNav from "../MobileNav/MobileNav";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -17,6 +18,11 @@ function isActive(href: string): boolean {
   }
   return currentPath.startsWith(href);
 }
+
+const linksWithActive = navLinks.map((link) => ({
+  ...link,
+  active: isActive(link.href),
+}));
 ---
 
 <header>
@@ -42,6 +48,9 @@ function isActive(href: string): boolean {
       }
     </ul>
 
-    <ThemeToggle client:load/>
+    <div class="nav-actions">
+      <ThemeToggle client:load />
+      <MobileNav links={linksWithActive} client:media="(max-width: 768px)" />
+    </div>
   </nav>
 </header>

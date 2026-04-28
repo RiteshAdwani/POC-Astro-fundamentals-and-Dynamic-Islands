@@ -38,7 +38,7 @@ const canonicalURL = Astro.site
     <script is:inline>
       document.documentElement.setAttribute(
         "data-theme",
-        localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) ?? Theme.Dark,
+        localStorage.getItem("theme") ?? "dark",
       );
     </script>
 
@@ -116,6 +116,7 @@ const canonicalURL = Astro.site
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
@@ -164,6 +165,19 @@ const canonicalURL = Astro.site
     padding: 0.2em 0.4em;
     border-radius: 4px;
     color: var(--color-accent-hover);
+  }
+
+  /* Shiki dual-theme: pick the right colour scheme based on data-theme */
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+
+  [data-theme="light"] .astro-code,
+  [data-theme="light"] .astro-code span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
   }
 
   @media (max-width: 768px) {

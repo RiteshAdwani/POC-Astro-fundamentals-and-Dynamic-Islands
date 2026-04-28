@@ -1,0 +1,126 @@
+/* ── Hamburger button ── */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    position: relative;
+    z-index: 201;
+  }
+
+  .hamburger:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* Animate to X when open */
+.hamburger-bar:nth-child(1).open {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-bar:nth-child(2).open {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-bar:nth-child(3).open {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Backdrop ── */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 199;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nav-backdrop.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ── Drawer ── */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(75vw, 280px);
+  background-color: var(--color-bg);
+  border-left: 1px solid var(--color-border);
+  z-index: 200;
+  padding: 5rem 1.5rem 2rem;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.3s;
+}
+
+.nav-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0s;
+}
+
+/* ── Drawer links ── */
+.drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.drawer-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.drawer-link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+}
+
+.drawer-link.active {
+  color: var(--color-accent-hover);
+  background-color: var(--color-surface);
+  font-weight: 500;
+}

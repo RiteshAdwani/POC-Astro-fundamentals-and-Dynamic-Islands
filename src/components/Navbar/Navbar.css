@@ -68,15 +68,22 @@ nav {
   }
 
   .nav-links {
-    gap: 0.25rem;
-  }
-
-  .nav-link {
-    font-size: 0.875rem;
-    padding: 0.35rem 0.65rem;
+    display: none;
   }
 
   .logo {
     font-size: 1.1rem;
   }
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
