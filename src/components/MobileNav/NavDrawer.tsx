@@ -1,12 +1,16 @@
 import type { NavLink } from "./types";
 
-interface Props {
+interface NavDrawerProps {
   open: boolean;
   links: NavLink[];
   onClose: () => void;
 }
 
-export default function NavDrawer({ open, links, onClose }: Props) {
+/**
+ * @description Component for the navigation drawer in the mobile navigation. 
+ * It slides in from the side when the hamburger button is clicked and displays the navigation links.
+ */
+const NavDrawer = ({ open, links, onClose }: NavDrawerProps) => {
   return (
     <>
       <div
@@ -38,4 +42,6 @@ export default function NavDrawer({ open, links, onClose }: Props) {
       </div>
     </>
   );
-}
+};
+
+export default NavDrawer;

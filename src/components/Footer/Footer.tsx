@@ -1,6 +1,10 @@
 import "./Footer.css";
 
-export default function Footer() {
+/**
+ * @description Footer component for the website. 
+ * It displays the logo, tagline, and copyright information.
+ */
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -27,4 +31,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -2,7 +2,10 @@ import "./TechStack.css";
 import type { Tech } from "./types";
 import { techs, categoryColors } from "./data";
 
-export default function TechStack() {
+/**
+ * @description Component to display the technology stack used in the projects.
+ */
+const TechStack = () => {
   return (
     <div className="techstack">
       <div className="legend">
@@ -38,4 +41,6 @@ export default function TechStack() {
       </ul>
     </div>
   );
-}
+};
+
+export default TechStack;

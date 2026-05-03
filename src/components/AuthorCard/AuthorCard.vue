@@ -12,6 +12,10 @@
           <span class="stat-value">{{ stat.value }}</span>
           <span class="stat-label">{{ stat.label }}</span>
         </li>
+        <li class="stat">
+          <span class="stat-value">{{ $likeCount }}</span>
+          <span class="stat-label">Likes</span>
+        </li>
       </ul>
     </div>
   </div>
@@ -19,20 +23,24 @@
 
 <script setup lang="ts">
 import "./AuthorCard.css";
+import { useStore } from "@nanostores/vue";
+import { totalLikeCount } from "../../stores/likeStore";
 
 interface Stat {
   value: string;
   label: string;
 }
 
-interface Props {
+interface AuthorCardProps {
   name: string;
   jobTitle: string;
   bio: string;
   stats: Stat[];
 }
 
-const props = defineProps<Props>();
+const props = defineProps<AuthorCardProps>();
+
+const $likeCount = useStore(totalLikeCount);
 
 const initials = props.name
   .split(" ")

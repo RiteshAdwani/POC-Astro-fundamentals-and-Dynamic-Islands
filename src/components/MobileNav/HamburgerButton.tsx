@@ -1,9 +1,12 @@
-interface Props {
+interface HamburgerButtonProps {
   open: boolean;
   onToggle: () => void;
 }
 
-export default function Hamburger({ open, onToggle }: Props) {
+/**
+ * @description Component for the hamburger menu button in the mobile navigation.
+ */
+const HamburgerButton = ({ open, onToggle }: HamburgerButtonProps) => {
   return (
     <button
       className="hamburger"
@@ -17,4 +20,6 @@ export default function Hamburger({ open, onToggle }: Props) {
       <span className={`hamburger-bar${open ? " open" : ""}`} />
     </button>
   );
-}
+};
+
+export default HamburgerButton;

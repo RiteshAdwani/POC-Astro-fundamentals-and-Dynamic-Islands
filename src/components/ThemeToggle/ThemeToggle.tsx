@@ -7,9 +7,15 @@ import { Theme } from "../../types/global.types";
 import { NEXT_THEME } from "../../constants/theme.constants";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys.constants";
 
-export default function ThemeToggle() {
+/**
+ * @description Component for toggling between light and dark themes.
+ */
+const ThemeToggle = () => {
   const [theme, setTheme] = useState<Theme>(Theme.Dark);
 
+  /**
+   * @description Effect to initialize the theme based on localStorage value.
+   */
   useLayoutEffect(() => {
     setTheme(
       (localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) as Theme) ?? Theme.Dark,
@@ -21,6 +27,9 @@ export default function ThemeToggle() {
   const label = title;
   const Icon = nextTheme === Theme.Light ? SunIcon : MoonIcon;
 
+  /**
+   * @description Handler for toggling the theme. It updates the theme state, sets the data-theme attribute on the document element for CSS theming, and saves the selected theme in localStorage for persistence across sessions.
+   */
   const handleToggle = () => {
     const next = NEXT_THEME[theme];
     setTheme(next);
@@ -38,4 +47,6 @@ export default function ThemeToggle() {
       <Icon />
     </button>
   );
-}
+};
+
+export default ThemeToggle;

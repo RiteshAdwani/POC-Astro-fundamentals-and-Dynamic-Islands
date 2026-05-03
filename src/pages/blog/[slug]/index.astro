@@ -50,7 +50,7 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
 
     <footer class="post-footer">
       <a href="/blog" class="back-link">← Back to Blog</a>
-      <LikeButton client:idle />
+      <LikeButton client:idle slug={post.id} />
     </footer>
   </article>
 </BaseLayout>
