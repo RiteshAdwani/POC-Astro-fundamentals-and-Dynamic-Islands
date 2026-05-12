@@ -21,7 +21,7 @@ Astro is a modern web framework for building fast, content-rich websites. It del
 ## 📁 Project Structure
 
 ```text
-astro-fundamentals/
+POC-Astro-fundamentals-and-Dynamic-Islands/
 ├── astro.config.mjs          # Astro configuration with integrations
 ├── package.json
 ├── tsconfig.json
