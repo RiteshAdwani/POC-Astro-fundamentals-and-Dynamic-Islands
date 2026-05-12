@@ -11,9 +11,9 @@ interface GithubRepo {
   archived: boolean;
 }
 
-export async function fetchProjects(token: string): Promise<Project[]> {
+export async function fetchProjects(token: string, githubUsername: string): Promise<Project[]> {
   const response = await fetch(
-    "https://api.github.com/users/RiteshAdwani/repos?per_page=5&type=public&sort=pushed&direction=desc",
+    `https://api.github.com/users/${githubUsername}/repos?per_page=5&type=public&sort=pushed&direction=desc`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard/PostCard.astro";
 import ProjectCard from "../components/ProjectCard/ProjectCard.astro";
 import { getCollection } from "astro:content";
-import { GITHUB_TOKEN } from "astro:env/server";
+import { GITHUB_TOKEN , GITHUB_USERNAME } from "astro:env/server";
 import { fetchProjects } from "../lib/github";
 import "./home.css";
 
@@ -14,7 +14,7 @@ const featuredPosts = allPosts
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
 // get featured projects from GitHub API
-const allProjects = await fetchProjects(GITHUB_TOKEN);
+const allProjects = await fetchProjects(GITHUB_TOKEN, GITHUB_USERNAME);
 const featuredProjects = allProjects.filter((p) => p.featured);
 ---
 

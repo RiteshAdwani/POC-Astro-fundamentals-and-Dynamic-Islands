@@ -2,10 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard/ProjectCard.astro";
 import "./projects.css";
-import { GITHUB_TOKEN } from "astro:env/server";
+import { GITHUB_TOKEN , GITHUB_USERNAME } from "astro:env/server";
 import { fetchProjects } from "../../lib/github";
 
-const projects = await fetchProjects(GITHUB_TOKEN);
+const projects = await fetchProjects(GITHUB_TOKEN, GITHUB_USERNAME);
 const featuredProjects = projects.filter((p) => p.featured);
 const otherProjects = projects.filter((p) => !p.featured);
 ---
