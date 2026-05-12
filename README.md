@@ -1,6 +1,8 @@
-# Astro Fundamentals
+# Astro Fundamentals and Dynamic Islands
 
 This project demonstrates core concepts of the [Astro](https://astro.build/) framework, focusing on performance, content collections, schema validation, multi-framework support, advanced routing, data management, and dynamic islands with client directives.
+
+Live demo: [Astro Fundamentals and Dynamic Islands](https://poc-dynamic-islands-with-astro.netlify.app/)
 
 ## 🚀 What is Astro?
 
