@@ -171,6 +171,7 @@ Astro provides built-in environment variable validation with type safety using `
 ```env
 # Server-only (NOT exposed to browser)
 GITHUB_TOKEN=your_github_token
+GITHUB_USERNAME=your_github_username
 
 # Client accessible
 PUBLIC_API_URL=your_api_url
